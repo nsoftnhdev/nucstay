@@ -45,14 +45,15 @@ const clerkWebhooks = async (req, res) => {
         await User.findByIdAndDelete(data.id);
         break;
       }
-
       default:
+        console.log("Unhandled event type:", type);
         break;
     }
-    res.json({ success: true, message: "Webhook received" });
+
+    res.status(200).json({ success: true, message: "Webhook received" });
   } catch (error) {
-    console.log(error.message);
-    res.json({ success: false, message: error.message });
+    console.error("Webhook error:", error.message);
+    res.status(400).json({ success: false, message: error.message });
   }
 };
 
