@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const MyBookings = () => {
   const { axios, getToken, user } = useAppContext();
-  const [booking, setBooking] = useState([]);
+  const [bookings, setBookings] = useState([]);
 
   const fetchUserBookings = async () => {
     try {
@@ -15,7 +15,7 @@ const MyBookings = () => {
       });
 
       if (data.success) {
-        setBooking(data.booking);
+        setBookings(data.bookings);
       } else {
         toast.error(data.message);
       }
